@@ -3,12 +3,7 @@
 		"browser": true,
 		"es2021": true
 	},
-	"extends": [
-		"plugin:react/recommended",
-		"standard-with-typescript",
-		"prettier"
-	],
-	"overrides": [],
+	"extends": ["react-app", "react-app/jest", "prettier"],
 	"parserOptions": {
 		"project": ["tsconfig.json"],
 		"ecmaFeatures": {
@@ -17,8 +12,32 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["react"],
+	"plugins": ["jsx-a11y", "react"],
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		},
+		"react": {
+			"version": "detect"
+		}
+	},
 	"rules": {
+		"no-console": "error",
+		"no-restricted-imports": [
+			"error",
+			{
+				"paths": [
+					{
+						"name": "@material-ui/icons",
+						"message": "'@material-ui/icons' does not support tree-shaking and will extremely increase the bundle size if imported like this. Import the required icons directly from their respective submodules: '@material-ui/icons/MyIcon'"
+					}
+				],
+				"patterns": ["*/node_modules/*", "node_modules/*"]
+			}
+		],
 		"import/no-unresolved": ["error", { "commonjs": true }],
 		"import/named": "error",
 		"import/default": "error",
@@ -59,7 +78,7 @@
 				"ignore": [""]
 			}
 		],
-		"react/jsx-uses-react": "off",
+		"react/jsx-uses-react": "error",
 		"react/react-in-jsx-scope": "off"
 	}
 }
