@@ -1,6 +1,14 @@
-export interface WalletsInterface {
-	wallets: string[]
-	loadWallets: (params: object) => void
+export type WalletCardProps = {
+	wallet: string
+	name: string
+	address: string
+	balances: WalletsBalances[]
+}
+
+export type WalletsBalances = {
+	name: string
+	ticker: string
+	balance: string
 }
 
 export type Tokens = {
@@ -22,4 +30,9 @@ export interface BalanceAddress {
 		provider: any,
 		decimals: number,
 	): Promise<TokenInfo>
+}
+
+export interface WalletsInterface {
+	wallets: string[]
+	loadWallets: (params: object) => void
 }
