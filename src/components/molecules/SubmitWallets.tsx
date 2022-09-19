@@ -131,9 +131,9 @@ const SubmitWallets: React.FC = () => {
 						borderTop: '1px solid #eaeef3',
 					}}
 				>
-					<Button variant="outlined" disableElevation sx={{ mr: 3 }}>
+					{/* <Button variant="outlined" disableElevation sx={{ mr: 3 }}>
 						Close
-					</Button>
+					</Button> */}
 					<Button type="submit" variant="contained" disableElevation>
 						Update Wallets
 					</Button>
