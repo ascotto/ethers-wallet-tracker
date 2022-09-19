@@ -1,0 +1,84 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["react-app", "react-app/jest", "prettier"],
+	"parserOptions": {
+		"project": ["tsconfig.json"],
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["jsx-a11y", "react"],
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		},
+		"react": {
+			"version": "detect"
+		}
+	},
+	"rules": {
+		"no-console": "warn",
+		"no-restricted-imports": [
+			"error",
+			{
+				"paths": [
+					{
+						"name": "@material-ui/icons",
+						"message": "'@material-ui/icons' does not support tree-shaking and will extremely increase the bundle size if imported like this. Import the required icons directly from their respective submodules: '@material-ui/icons/MyIcon'"
+					}
+				],
+				"patterns": ["*/node_modules/*", "node_modules/*"]
+			}
+		],
+		"import/no-unresolved": ["error", { "commonjs": true }],
+		"import/named": "error",
+		"import/default": "error",
+		"import/namespace": "error",
+		"import/export": "error",
+		"import/no-named-as-default": "error",
+		"import/no-named-as-default-member": "error",
+		"import/no-extraneous-dependencies": "error",
+		"import/no-mutable-exports": "error",
+		"import/no-amd": "error",
+		"import/first": "error",
+		"import/no-duplicates": "error",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"mjs": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+		],
+		"import/order": ["off", { "newlines-between": "always" }],
+		"import/newline-after-import": "error",
+		"import/no-absolute-path": "error",
+		"import/no-dynamic-require": "error",
+		"import/no-webpack-loader-syntax": "error",
+		"import/no-named-default": "error",
+		"import/no-self-import": "error",
+		"import/no-cycle": "error",
+		"import/no-useless-path-segments": "error",
+		"import/dynamic-import-chunkname": "error",
+		"react/no-unused-state": "error",
+		"react/prop-types": [
+			"off",
+			{
+				"ignore": [""]
+			}
+		],
+		"react/jsx-uses-react": "error",
+		"react/react-in-jsx-scope": "off"
+	}
+}
