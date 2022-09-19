@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from '@mui/material'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { utils } from 'ethers'
 import { storeWallets } from '../../utils/storage'
 import { Box } from '@mui/system'
@@ -15,6 +15,12 @@ const SubmitWallets: React.FC = () => {
 	const { wallets, loadWallets } = useContext(GlobalWalletsStore)
 	const [error, setError] = useState<Error | null>(null)
 	const textRef = useRef<HTMLInputElement>(null)
+
+	useEffect(() => {
+		if (wallets.length > 0) {
+			textRef.current!.value = wallets.join('\n')
+		}
+	}, [wallets])
 
 	const storeWalletsHandler = async (wallets: string[]) => {
 		const isStored = await storeWallets(wallets)
@@ -91,8 +97,6 @@ const SubmitWallets: React.FC = () => {
 				/>
 			)}
 
-			{wallets.length > 0 &&
-				wallets.map((wallet) => <div key={'id_' + wallet}>{wallet}</div>)}
 			<form onSubmit={submitFormHandler}>
 				<Box sx={{ pl: 3, pr: 3 }}>
 					<TextField
@@ -131,7 +135,7 @@ const SubmitWallets: React.FC = () => {
 						Close
 					</Button>
 					<Button type="submit" variant="contained" disableElevation>
-						Add Wallets
+						Update Wallets
 					</Button>
 				</Box>
 			</form>
