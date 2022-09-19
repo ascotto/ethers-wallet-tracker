@@ -1,9 +1,10 @@
 import { Button, TextField, Typography } from '@mui/material'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { utils } from 'ethers'
 import { storeWallets } from '../../utils/storage'
 import { Box } from '@mui/system'
 import ModalError from '../atoms/ModalError'
+import { GlobalWalletsStore } from '../../store/wallets/wallets.store'
 
 type Error = {
 	message: string
@@ -11,16 +12,15 @@ type Error = {
 }
 
 const SubmitWallets: React.FC = () => {
-	const [wallets, setWallets] = useState<string[]>([])
+	const { wallets, loadWallets } = useContext(GlobalWalletsStore)
 	const [error, setError] = useState<Error | null>(null)
-
 	const textRef = useRef<HTMLInputElement>(null)
 
 	const storeWalletsHandler = async (wallets: string[]) => {
 		const isStored = await storeWallets(wallets)
 
 		if (isStored) {
-			setWallets(wallets)
+			loadWallets(wallets)
 		}
 	}
 
