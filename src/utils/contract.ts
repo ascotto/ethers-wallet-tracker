@@ -1,4 +1,4 @@
-import { BalanceAddress } from "../types/index"
+import { BalanceAddress } from '../types/index'
 import { Contract, utils } from 'ethers'
 
 export const erc20Abi = [
@@ -9,12 +9,12 @@ export const erc20Abi = [
 
 // getBalanceForAddress with typescript
 export const getBalanceForAddress: BalanceAddress = async (
-	token,
+	tokenAddress,
 	walletAddress,
 	provider,
 	decimals,
 ) => {
-	const contract = new Contract(token, erc20Abi, provider)
+	const contract = new Contract(tokenAddress, erc20Abi, provider)
 	const balanceRaw = await contract.balanceOf(walletAddress)
 
 	const name = await contract.name()
